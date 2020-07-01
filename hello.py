@@ -1,22 +1,11 @@
-from appium import webdriver
-from appium.webdriver.common.mobileby import MobileBy
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-import time
+# Shamelessly copied from http://flask.pocoo.org/docs/quickstart/
+import automate
+from flask import Flask
+app = Flask(__name__)
 
-userName = "mrbond1"
-accessKey = "SBcceAmgx2r9xtFkGELs"
-desired_cap = {
-  'device': 'Google Pixel 3',
-  'os_version': '9.0'
-}
-desired_cap['project'] = 'My First Project'
-desired_cap['build'] = 'My First Build'
-desired_cap['name'] = 'Bstack-[Python] Sample Test'
-desired_cap['app'] = "bs://<hashed app-id>"
- 
-driver = webdriver.Remote("http://" + userName + ":" + accessKey + "@hub-cloud.browserstack.com/wd/hub", desired_cap)
+@app.route('/')
+def hello_world():
+    return automate()
 
-//Write your code here
-
-driver.quit()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='8000', debug=True)
